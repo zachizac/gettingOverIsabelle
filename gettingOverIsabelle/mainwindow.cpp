@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton,SIGNAL(clicked()),this, SLOT(openGameWin()));
+    connect(ui->actionJouer,SIGNAL(triggered(bool)),this,SLOT(openGameWin()));
     afficheGif();
 }
 

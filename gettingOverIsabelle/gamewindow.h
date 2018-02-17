@@ -15,6 +15,9 @@ public:
     explicit GameWindow(QWidget *parent = 0);
     ~GameWindow();
 
+public slots:
+    void backToMainWin();
+
 private:
     Ui::GameWindow *ui;
 };
