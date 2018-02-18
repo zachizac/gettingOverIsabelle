@@ -20,8 +20,21 @@
       <x>0</x>
       <y>0</y>
       <width>1031</width>
-      <height>741</height>
+      <height>631</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>660</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>
@@ -64,6 +77,22 @@
     <hint type="destinationlabel">
      <x>511</x>
      <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>507</x>
+     <y>692</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>515</x>
+     <y>336</y>
     </hint>
    </hints>
   </connection>

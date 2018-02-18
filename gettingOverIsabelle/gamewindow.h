@@ -2,6 +2,7 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
 
 namespace Ui {
 class GameWindow;
@@ -17,9 +18,12 @@ public:
 
 public slots:
     void backToMainWin();
+    void yolo();
 
 private:
     Ui::GameWindow *ui;
+    QRectF *benji;
+    QGraphicsScene *scene;
 };
 
 #endif // GAMEWINDOW_H
