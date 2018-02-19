@@ -11,6 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = FlappyBird
 TEMPLATE = app
 
+INCLUDEPATH += "C:\Program Files\Immersion Corporation\IFC23\inc"
+
+LIBS += "C:\Program Files\Immersion Corporation\IFC23\lib\IFC23.lib"
+
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -22,7 +26,8 @@ SOURCES += main.cpp\
     elescoreboard.cpp \
     elereadyboard.cpp \
     eleoverboard.cpp \
-    eletitleboard.cpp
+    eletitleboard.cpp \
+    gestion_haptique.cpp
 
 HEADERS  += mainwindow.h \
     gameelement.h \
@@ -33,7 +38,8 @@ HEADERS  += mainwindow.h \
     elescoreboard.h \
     elereadyboard.h \
     eleoverboard.h \
-    eletitleboard.h
+    eletitleboard.h \
+    gestion_haptique.h
 
 RESOURCES += \
     resource/image.qrc \

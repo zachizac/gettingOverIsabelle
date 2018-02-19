@@ -18,6 +18,7 @@
 #include "elereadyboard.h"
 #include "eleoverboard.h"
 #include "eletitleboard.h"
+#include "gestion_haptique.h"
 
 /* 4 status */
 enum GameStatus{GAMETITLE,
@@ -63,6 +64,9 @@ private:
     void gameReady();
     void gamePlay();
     void gameOver();
+
+    gestion_haptique *gestion;
+
 public:
     MainWindow(QWidget *parent = 0);
     QTime t;
@@ -78,6 +82,7 @@ public slots:
     void closeGame();// The button clicked , game exit.
     void displayInfo();
     void setButtonVisible(bool,bool,bool); // set 3 button visible .
+    gestion_haptique* getGestionHaptique();
 };
 
 #endif // MAINWINDOW_H

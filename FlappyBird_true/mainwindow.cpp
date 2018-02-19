@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include <pthread.h>
+#include <QThread>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -54,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->impactBirdRect.setRect(0,0,0.4*this->bird->getBindRect().width(),
                                  0.4*this->bird->getBindRect().height());
 
+    gestion = new gestion_haptique(this);
+
     /* Sound */
     this->soundDie = new QSound(":/sounds/sounds/sfx_die.wav");
     this->soundHit = new QSound(":/sounds/sounds/sfx_hit.wav");
@@ -74,10 +76,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Game Start.
     this->gameTitle();
+
 }
 
 MainWindow::~MainWindow()
 {
+    gestion->GetProjet()->Stop("Inertie_piaf");
+    gestion->GetProjet()->Stop("Mort");
     delete this->startButton;
     delete this->infoButton;
     delete this->closeButton;
@@ -108,12 +113,14 @@ void MainWindow::play()
     this->soundWing->stop();
     this->bird->birdUp();
     this->soundWing->play();
+    gestion->GetProjet()->Stop("Envol");
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if(t.elapsed()>500)
+    if(t.elapsed()>300)
     {
+        gestion->GetProjet()->Start("Envol");
         play();
         t.restart();
     }
@@ -268,6 +275,9 @@ void MainWindow::gameReady()
 
 void MainWindow::gamePlay()
 {
+    gestion->GetProjet()->Stop("Mort");
+    gestion->GetProjet()->Start("Inertie_piaf");
+
     this->background->enabledLogic = true;
     this->background->enabledDraw = true;
 
@@ -301,6 +311,9 @@ void MainWindow::gamePlay()
 
 void MainWindow::gameOver()
 {
+    gestion->GetProjet()->Stop("Inertie_piaf");
+    gestion->GetProjet()->Start("Mort");
+
     this->background->enabledLogic = true;
     this->background->enabledDraw = true;
 
@@ -376,4 +389,8 @@ void MainWindow::setButtonVisible(bool _startBtn, bool _scoreBtn, bool _rateBtn)
     this->startButton->setVisible(_startBtn);
     this->closeButton->setVisible(_scoreBtn);
     this->infoButton->setVisible(_rateBtn);
+}
+
+gestion_haptique* MainWindow::getGestionHaptique(){
+    return this->gestion;
 }
